@@ -1,0 +1,453 @@
+:root {
+ --bleu:#0b1e39;
+ --accent:#087cf5;
+ --fond:#f3f6fb;
+ --texte:#203049;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:var(--fond);
+ color:var(--texte);
+}
+a { text-decoration:none; color:inherit; }
+.entete {
+ background:var(--bleu);
+ color:white;
+ padding:20px 6%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ flex-wrap:wrap;
+ gap:15px;
+}
+.logo { font-size:23px; font-weight:900; }
+nav { display:flex; flex-wrap:wrap; gap:20px; }
+nav a:hover { color:#66b8ff; }
+.banniere {
+ background:linear-gradient(120deg,#08172e,#1267bd);
+ color:white;
+ padding:85px 7%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:25px;
+}
+.banniere h1 {
+ font-size:clamp(30px,5vw,54px);
+ max-width:700px;
+}
+.banniere p { line-height:1.7; }
+.illustration { font-size:80px; }
+.conteneur {
+ max-width:1250px;
+ margin:auto;
+ padding:45px 20px;
+}
+.titre-section { text-align:center; margin-bottom:30px; }
+.recherche {
+ display:flex;
+ gap:10px;
+ margin-bottom:30px;
+}
+input,textarea,select {
+ width:100%;
+ padding:13px;
+ border:1px solid #cbd5e1;
+ border-radius:7px;
+ font:inherit;
+}
+button,.bouton {
+ display:inline-block;
+ background:var(--accent);
+ color:white;
+ border:0;
+ padding:13px 19px;
+ border-radius:7px;
+ cursor:pointer;
+ font-weight:bold;
+}
+button:hover,.bouton:hover { background:#005ac0; }
+.grille {
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+ gap:24px;
+}
+.produit,.carte {
+ background:white;
+ border-radius:13px;
+ overflow:hidden;
+ box-shadow:0 5px 20px #10294a12;
+}
+.photo {
+ height:195px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:#e8eff9;
+}
+.photo img {
+ width:100%;
+ height:100%;
+ object-fit:contain;
+}
+.photo span { font-size:75px; }
+.details { padding:20px; }
+.details p { min-height:55px; line-height:1.5; }
+.details strong {
+ display:block;
+ color:var(--accent);
+ font-size:23px;
+ margin:15px 0;
+}
+.details button { width:100%; }
+.carte { padding:25px; margin:25px auto; max-width:850px; }
+.champ { margin-bottom:16px; }
+.champ label { display:block; margin-bottom:7px; }
+table { width:100%; border-collapse:collapse; }
+td,th {
+ padding:12px;
+ text-align:left;
+ border-bottom:1px solid #ddd;
+}
+.tableau { overflow-x:auto; }
+.message {
+ padding:14px;
+ background:#e2f6e9;
+ border-radius:8px;
+ margin:15px 0;
+}
+.erreur { background:#ffe4e4; }
+.actions { display:flex; gap:10px; flex-wrap:wrap; }
+.danger { background:#d62828; }
+footer {
+ text-align:center;
+ background:var(--bleu);
+ color:white;
+ padding:35px;
+ margin-top:50px;
+}
+@media(max-width:650px) {
+ .banniere { padding:55px 20px; }
+ .illustration { display:none; }
+ .recherche { flex-direction:column; }
+ nav { gap:12px; }
+}
+
+
+/* Grille des marchandises */
+.grille {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 25px;
+    max-width: 1400px;
+    margin: 30px auto;
+    align-items: stretch;
+}
+
+/* Carte de chaque produit */
+.produit {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.09);
+    border: 1px solid #e5eaf2;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.produit:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 80, 180, 0.18);
+}
+
+/* Espace réservé à la photo */
+.produit .photo {
+    width: 100%;
+    height: 260px;
+    background: #8094be;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 12px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+/* Affichage des images JPG */
+.produit .photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+
+/* Agrandissement au survol */
+.produit:hover .photo img {
+    transform: scale(1.06);
+}
+
+/* Si le produit n'a pas de photo */
+.produit .photo span {
+    font-size: 75px;
+    color: #8ba4c8;
+}
+
+/* Informations du produit */
+.produit .details {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.produit .details h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: #102747;
+    margin: 0 0 12px;
+    line-height: 1.4;
+}
+
+.produit .details p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #64748b;
+    margin: 0 0 15px;
+    min-height: 0;
+}
+
+.produit .details strong {
+    font-size: 23px;
+    color: #087cf5;
+    font-weight: 800;
+    display: block;
+    margin-top: auto;
+    margin-bottom: 18px;
+}
+
+/* Bouton d'achat */
+.produit .details form {
+    width: 100%;
+}
+
+.produit .details button {
+    width: 100%;
+    padding: 14px;
+    background: #087cf5;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.produit .details button:hover {
+    background: #709cce;
+}
+
+/* Tablettes */
+@media (max-width: 1100px) {
+    .grille {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Petits écrans */
+@media (max-width: 800px) {
+    .grille {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .produit .photo {
+        height: 220px;
+    }
+}
+
+/* Téléphones */
+@media (max-width: 480px) {
+    .grille {
+        grid-template-columns: 1fr;
+    }
+
+    .produit .photo {
+        height: 280px;
+    }
+}
+.entete .logo-network {
+    width: 75px;
+    height: auto;
+    max-height: 65px;
+    object-fit: contain;
+    display: block;
+
+
+}
+@media (max-width: 768px) {
+     .entete .logo-network {
+        width: 55px;
+        max-height: 50px;
+    
+
+    } 
+
+}
+.banniere .illustration {
+    display: block;
+    flex: 1;
+    max-width: 550px;
+    min-width: 0;
+
+}
+.affiche-network {
+    display: block;
+    width: 100;
+    align-items: center;
+    height: auto;
+    max-height: 280px;
+    object-fit: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0.25);
+
+
+}
+@media (max-width: 768px) {
+    .banniere {
+        flex-direction: column;
+
+}
+.banniere .illustration {
+    display: block;
+    width: 100%;
+}
+
+}
+/* Bouton afficher / masquer le mot de passe */
+
+.champ-mot-de-passe {
+    position: relative;
+    width: 100%;
+}
+
+.champ-mot-de-passe input {
+    width: 100%;
+    padding-right: 55px;
+}
+
+.champ-mot-de-passe .bouton-oeil {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: #174ca7;
+    border: none;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.champ-mot-de-passe .bouton-oeil:hover {
+    background: #92af2a;
+
+}
+/* Affichage des photos des marchandises */
+
+.photo {
+    width: 100%;
+    height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f8ff;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.photo .image-produit {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 12px;
+    box-sizing: border-box;
+    display: block;
+}
+
+/* Barre de navigation */
+.entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Emplacement du logo */
+.entete .logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+/* Taille du logo */
+.entete .logo-network {
+    width: 90px;
+    height: 65px;
+    max-width: 90px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Navigation */
+.entete nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.entete .logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 140px;
+    overflow: visible;
+}
+
+.entete .logo-network {
+    width: 140px !important;
+    height: 105px !important;
+    max-width: 105px !important;
+    object-fit: contain;
+}
+
+.entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.entete .logo {
+    display: flex;
+    align-items: center;
+    width: 140px;
+    flex-shrink: 0;
+}
+
+.entete .logo-network {
+    display: block;
+    width: 140px !important;
+    height: 105px !important;
+    object-fit: contain;
+}
